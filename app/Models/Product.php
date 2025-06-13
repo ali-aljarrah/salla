@@ -19,18 +19,18 @@ class Product extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'category_id',
-        'slug',
+        'category_id',//
+        'slug',//
         'name',//
         'description',//
         'price',//
-        'images',
-        'discount_price',
-        'discount_start',
-        'discount_end',
-        'promo',
-        'storage_quantity',
-        'is_active',
+        'images',//
+        'discount_price',//
+        'discount_start',//
+        'discount_end',//
+        'promo',//
+        'storage_quantity',//
+        'is_active',//
     ];
 
     protected $casts = [

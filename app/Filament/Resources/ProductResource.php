@@ -12,7 +12,6 @@ use Filament\Forms\Components\Group;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -21,6 +20,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Set;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Support\Str;
+use Filament\Forms\Get;
 
 class ProductResource extends Resource
 {
@@ -37,8 +37,9 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Group::make()->schema([
-                    Section::make('Product Information')->schema([
-                        Forms\Components\TextInput::make('title')
+                    Section::make('مواصفات المنتج')->schema([
+                        Forms\Components\TextInput::make('name')
+                                ->label("الإسم")
                                 ->required()
                                 ->maxLength(255)
                                 ->live(onBlur:true)
@@ -51,6 +52,7 @@ class ProductResource extends Resource
 
 
                         Forms\Components\TextInput::make('slug')
+                            ->label("الإسم البحثي")
                             ->required()
                             ->disabled()
                             ->dehydrated()
@@ -58,19 +60,25 @@ class ProductResource extends Resource
                             ->unique(Product::class, 'slug', ignoreRecord: true),
 
 
-                        Forms\Components\TextInput::make('price')
+
+
+                        Forms\Components\TextInput::make('storage_quantity')
+                            ->label('الكمية في المخزون')
                             ->required()
-                            ->numeric()
-                            ->prefix('$'),
+                            ->numeric(),
 
                         Forms\Components\TextInput::make('promo')
+                            ->label('وصف العرض')
                             ->required(),
+
+
 
                     ])->columns(2),
 
 
                     Section::make()->schema([
                         MarkdownEditor::make('description')
+                            ->label("الوصف")
                             ->required()
                             ->columnSpanFull()
                             ->fileAttachmentsDirectory('products'),
@@ -78,33 +86,60 @@ class ProductResource extends Resource
 
 
                     Section::make()->schema([
-                        Tabs::make()->tabs([
-                            Tabs\Tab::make('English Additional Information')
-                                ->schema([
-                                    MarkdownEditor::make('additional_info')
-                                        ->columnSpanFull()
-                                        ->fileAttachmentsDirectory('products'),
-                            ]),
-                            Tabs\Tab::make('Arabic Additional Information')
-                                ->schema([
-                                    MarkdownEditor::make('arabic_additional_info')
-                                        ->columnSpanFull()
-                                        ->fileAttachmentsDirectory('products')
-                            ]),
-                        ])
-
-
-
-                    ]),
-
-                    Section::make()->schema([
                         FileUpload::make('images')
+                                ->label('الصور')
                                 ->required()
                                 ->multiple()
                                 ->directory('products')
                                 ->maxFiles(5)
                                 ->reorderable()
-                    ])
+                    ]),
+
+                    Forms\Components\Section::make('خيارات طلب المنتج')
+                    ->schema([
+                        Forms\Components\Repeater::make('options')
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->label('وصف الخيار')
+                                    ->placeholder('اشتري قطعة فقط ب...')
+                                    ->required(),
+
+                                Forms\Components\TextInput::make('price')
+                                    ->label('مبلغ الخيار')
+                                    ->placeholder('200')
+                                    ->numeric()
+                                    ->required(),
+
+
+                                Forms\Components\TextInput::make('price_before_discount')
+                                    ->label('السعر قبل الخصم')
+                                    ->numeric()
+                                    ->maxLength(255),
+
+                                Toggle::make('has_shipping_fee')
+                                        ->label('هل يوجد رسوم للتوصيل')
+                                        ->live()
+                                        ->afterStateUpdated(function (Get $get, Set $set) {
+                                            if (!$get('has_shipping_fee')) {
+                                                $set('shipping_fees', 0);
+                                            }
+                                        }),
+
+                                Forms\Components\TextInput::make('shipping_fees')
+                                    ->label('مبلغ التوصيل')
+                                    ->numeric()
+                                    ->default(0)
+                                    ->visible(fn (Get $get): bool => $get('has_shipping_fee'))
+                                    ->disabled(fn (Get $get): bool => !$get('has_shipping_fee')),
+                            ])
+                            ->columns(2)
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->defaultItems(1)
+                            ->collapsible()
+                            ->collapsed()
+                            ->addActionLabel('اضافة خيار'),
+                    ]),
 
 
                 ])->columnSpan(2),
@@ -112,6 +147,7 @@ class ProductResource extends Resource
                 Group::make()->schema([
                     Section::make()->schema(([
                             Select::make('category_id')
+                                ->label('القسم')
                                 ->required()
                                 ->preload()
                                 ->searchable()
@@ -120,9 +156,29 @@ class ProductResource extends Resource
 
 
                             Toggle::make('is_active')
-                                ->required()
-                                ->default(true),
+                                ->label('ايقاف \ تفعيل المنتج')
+                                ->onIcon('heroicon-m-bolt')
+                                ->offIcon('heroicon-m-x-circle')
+                                ->onColor('success')
+                                ->offColor('danger')
+                                ->default(true)
+                                ->required(),
                         ])),
+
+                    Forms\Components\Section::make('الخصم')
+                        ->schema([
+                            Forms\Components\TextInput::make('price')
+                                ->label('السعر')
+                                ->required()
+                                ->numeric()
+                                ->prefix('$'),
+
+                            Forms\Components\DateTimePicker::make('discount_start')
+                                ->label('تاريخ بداية الخصم'),
+
+                            Forms\Components\DateTimePicker::make('discount_end')
+                                ->label('تاريخ نهاية الخصم'),
+                    ]),
                 ])->columnSpan(1)
             ])->columns(3);
     }
@@ -131,18 +187,25 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('name')
+                    ->label("الاسم")
+                    ->limit(40)
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('category.name')
-                    ->label("Category")
+                    ->label("القسم")
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('model_number')
+                Tables\Columns\TextColumn::make('price')
+                    ->label("السعر")
                     ->sortable(),
+
+                Tables\Columns\IconColumn::make('is_active')
+                    ->label("حالة المنتج")
+                    ->boolean(),
 
                 ImageColumn::make('images')
-                    ->label('First Image')
+                    ->label('الصورة')
                     ->getStateUsing(function ($record) {
                         // Get the first image from the JSON array
                         $images = $record->images;
@@ -152,11 +215,13 @@ class ProductResource extends Resource
                     ->height(50), // Set the height of the image in the table
 
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label("تاريخ الإنشاء")
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label("تاريخ اخر تعديل")
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -183,6 +248,21 @@ class ProductResource extends Resource
         return [
             //
         ];
+    }
+
+      public static function getNavigationLabel(): string
+    {
+        return 'المنتجات';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return "منتج";
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return "المنتجات";
     }
 
     public static function getPages(): array

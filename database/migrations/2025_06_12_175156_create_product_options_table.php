@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->integer('quantity');
-            $table->string('savings_text')->nullable();
-            $table->decimal('shipping_fees', 10, 2);
+            $table->integer('price');
+            $table->integer('price_before_discount');
+            $table->boolean('has_shipping_fee')->default(true);
+            $table->decimal('shipping_fees', 10, 2)->nullable();
             $table->timestamps();
         });
     }

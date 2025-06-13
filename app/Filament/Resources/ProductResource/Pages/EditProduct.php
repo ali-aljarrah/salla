@@ -19,7 +19,7 @@ class EditProduct extends EditRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Product updated';
+        return 'تم تحديث المنتج';
     }
 
     protected function getRedirectUrl(): string

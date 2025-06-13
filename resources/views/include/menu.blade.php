@@ -1,6 +1,6 @@
 <nav id="navbar" class="navbar navbar-expand-lg fixed-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">شي تريند</a>
+        <a class="navbar-brand" href="/">شي تريند</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -30,3 +30,7 @@ php artisan migrate
 ```
 php artisan make:filament-user
 ```
+- Run this command to create a storage shortcut:
+```
+php artisan storage:link
+```

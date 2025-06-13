@@ -6,6 +6,7 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
@@ -23,7 +24,7 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -33,17 +34,15 @@ class CategoryResource extends Resource
                     Grid::make()
                         ->schema([
                             Forms\Components\TextInput::make('name')
+                                ->label("الإسم")
                                 ->required()
                                 ->maxLength(255)
                                 ->live(onBlur:true)
                                 ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation
                                     === 'create' ? $set('slug', Str::slug($state)) : null),
 
-                            Forms\Components\TextInput::make('arabic_name')
-                                ->required()
-                                ->maxLength(255),
-
                             Forms\Components\TextInput::make('slug')
+                                ->label("الإسم البحثي")
                                 ->required()
                                 ->disabled()
                                 ->dehydrated()
@@ -51,12 +50,12 @@ class CategoryResource extends Resource
                                 ->maxLength(255),
                         ]),
 
-                    Forms\Components\FileUpload::make('image')
-                        ->required()
-                        ->directory('categories')
-                        ->image(),
-
                     Forms\Components\Toggle::make('is_active')
+                        ->onIcon('heroicon-m-bolt')
+                        ->offIcon('heroicon-m-x-circle')
+                        ->label("حالة القسم")
+                        ->onColor('success')
+                        ->offColor('danger')
                         ->default(true)
                         ->required(),
                 ])
@@ -64,23 +63,26 @@ class CategoryResource extends Resource
     }
 
     public static function table(Table $table): Table
-  {
+    {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label("الإسم")
+                    ->limit(40)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('arabic_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+
                 Tables\Columns\IconColumn::make('is_active')
+                    ->label("حالة القسم")
                     ->boolean(),
+
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label("تاريخ الإنشاء")
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label("تاريخ اخر تحديث")
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -107,6 +109,21 @@ class CategoryResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'الأقسام';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return "قسم";
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return "أقسام";
     }
 
     public static function getPages(): array

@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     public function homePage() {
-        return  view('home');
+        $categories = Category::where('is_active', 1)->get();
+        $products = Product::where('is_active', 1)->get();
+
+        return  view('home',[
+            'categories' => $categories,
+            'products' => $products
+        ]);
     }
 
     public function categoryPage($id, $slug) {

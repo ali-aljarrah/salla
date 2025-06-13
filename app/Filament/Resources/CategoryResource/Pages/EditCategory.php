@@ -17,9 +17,9 @@ class EditCategory extends EditRecord
         ];
     }
 
-      protected function getCreatedNotificationTitle(): ?string
+    protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Category updated';
+        return 'تم تحديث القسم';
     }
 
     protected function getRedirectUrl(): string
