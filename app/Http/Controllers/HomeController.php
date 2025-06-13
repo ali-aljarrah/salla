@@ -22,7 +22,16 @@ class HomeController extends Controller
     }
 
     public function categoryPage($id, $slug) {
-        return view('category');
+        $category = Category::where('is_active', 1)->where('id', $id)->firstOrFail();
+        $categories = Category::where('is_active', 1)->limit(4)->get();
+
+        $products = Product::query()->where('is_active', 1)->where('category_id', $id);
+
+        return view('category',[
+            'category' => $category,
+            'categories' => $categories,
+            'products' => $products->paginate(9)
+        ]);
     }
 
     public function productPage($id, $slug) {

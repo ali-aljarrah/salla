@@ -15,6 +15,14 @@ body {
     border-bottom-style: solid;
 }
 
+.category-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
 .category-link {
     color: #ed4f2a;
     font-weight: 700;

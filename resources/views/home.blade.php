@@ -7,7 +7,7 @@
     @include('include.menu')
 
     @if (!empty($categories) && count($categories) > 0)
-        <section class="py-5">
+        <section class="pb-5">
             <div class="container">
                 <div class="row">
                     @foreach ($categories as $category)

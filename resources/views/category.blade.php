@@ -1,12 +1,70 @@
     @include('include.head')
-    <title>شي تريند</title>
+    <title>شي تريند - {{$category->name}}</title>
 
 
 </head>
   <body>
     @include('include.menu')
 
+    <section>
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="category-title">{{$category->name}}</h1>
+            </div>
+        </div>
+    </section>
 
+    @if (!empty($categories) && count($categories) > 0)
+        <section class="pb-5">
+            <div class="container">
+                <div class="row">
+                    @foreach ($categories as $category)
+                        <div class="col-lg-3 mb-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-center w-100">
+                                    <a class="category-link" href="/category/{{$category->id}}/{{arabicSlug($category->name)}}">{{$category->name}}</a>
+                                </div>
+                                <div>|</div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <section class="pb-5">
+        <div class="container">
+            <div class="row">
+                @if (!empty($products) && count($products) > 0)
+                    @foreach ($products as $product)
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            <div class="card">
+                                <div class="mb-2">{{$product->promo}}</div>
+                                <div class="mb-2">
+                                    <img class="img-fluid" loading="lazy" width="278" height="278" src="{{asset('storage/'. $product->images[0])}}" alt="{{$product->name}}">
+                                </div>
+                                <div class="mb-3">
+                                    <h3>{{$product->name}}</h3>
+                                </div>
+                                <div class="mb-3">
+                                    <h3>{{$product->price}} ريال</h3>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="col-lg-12">
+                        {{$products->links(data: ['scrollTo' => false])}}
+                    </div>
+                @else
+                <div class="col-lg-12 text-center">
+                    <h2>عذرا, لا يوجد منتجات لعرضها</h2>
+                </div>
+                @endif
+            </div>
+        </div>
+    </section>
 
     @include('include.footer')
   </body>
