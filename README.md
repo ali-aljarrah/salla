@@ -14,7 +14,19 @@ This is a Laravel based project using Filament package.
 - Uncomment and Change DB_DATABASE to the database name
 - Uncomment and Change DB_USERNAME to the database username
 - Uncomment and Change DB_PASSWORD to the database password
-- Run this command to install packages: composer install
-- Run this command to generate app key: php artisan key:generate
-- Run this command to migrate the database: php artisan migrate
-- Run this command to make admin user: php artisan make:filament-user
+- Run this command to install packages: 
+```
+composer install
+```
+- Run this command to generate app key: 
+```
+php artisan key:generate
+```
+- Run this command to migrate the database: 
+```
+php artisan migrate
+```
+- Run this command to make admin user: 
+```
+php artisan make:filament-user
+```
