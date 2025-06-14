@@ -29,3 +29,24 @@ body {
     font-size: 15px;
     text-decoration: none;
 }
+
+.pagination {
+    justify-content: center;
+}
+
+.secondary-title {
+    font-size: 20px;
+    color: #525252;
+    margin-right: 10px;
+    margin-bottom: 12px;
+}
+
+.img-orange-border{
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #eb4d2c;
+}
+
+.product-description {
+    color: #333333;
+}

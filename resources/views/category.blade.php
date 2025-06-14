@@ -39,18 +39,7 @@
                 @if (!empty($products) && count($products) > 0)
                     @foreach ($products as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                            <div class="card">
-                                <div class="mb-2">{{$product->promo}}</div>
-                                <div class="mb-2">
-                                    <img class="img-fluid" loading="lazy" width="278" height="278" src="{{asset('storage/'. $product->images[0])}}" alt="{{$product->name}}">
-                                </div>
-                                <div class="mb-3">
-                                    <h3>{{$product->name}}</h3>
-                                </div>
-                                <div class="mb-3">
-                                    <h3>{{$product->price}} ريال</h3>
-                                </div>
-                            </div>
+                            @include('components.product-card', ['product' => $product])
                         </div>
                     @endforeach
 

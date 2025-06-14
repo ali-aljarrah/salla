@@ -25,6 +25,28 @@
         </section>
     @endif
 
+    <section class="pb-5">
+        <div class="container">
+            <div class="row">
+                @if (!empty($products) && count($products) > 0)
+                    @foreach ($products as $product)
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                            @include('components.product-card', ['product' => $product])
+                        </div>
+                    @endforeach
+
+                    <div class="col-lg-12">
+                        {{$products->links(data: ['scrollTo' => false])}}
+                    </div>
+                @else
+                <div class="col-lg-12 text-center">
+                    <h2>عذرا, لا يوجد منتجات لعرضها</h2>
+                </div>
+                @endif
+            </div>
+        </div>
+    </section>
+
     @include('include.footer')
   </body>
 </html>
