@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\ProductExporter;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
 use App\Models\Size;
@@ -21,6 +22,8 @@ use Filament\Forms\Set;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Support\Str;
 use Filament\Forms\Get;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 
 class ProductResource extends Resource
 {
@@ -236,10 +239,14 @@ class ProductResource extends Resource
                     Tables\Actions\DeleteAction::make(),
                 ])
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(ProductExporter::class),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()->exporter(ProductExporter::class),
             ]);
     }
 

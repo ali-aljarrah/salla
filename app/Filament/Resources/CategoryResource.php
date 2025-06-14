@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\CategoryExporter;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Models\Category;
 use Filament\Forms;
@@ -15,6 +16,8 @@ use Filament\Tables;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 
 class CategoryResource extends Resource
 {
@@ -97,10 +100,14 @@ class CategoryResource extends Resource
                     Tables\Actions\DeleteAction::make(),
                 ])
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(CategoryExporter::class),
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()->exporter(CategoryExporter::class),
             ]);
     }
 
