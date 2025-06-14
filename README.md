@@ -38,5 +38,5 @@ php artisan storage:link
 ## Export Products and Categories to Excel
 
 We are using Laravel's queue system to manage exproting tables to avoid
-large tables issue on server, So please check the link below to config the server to run the queues:
+large tables issue on server, So please check this link to config the server to run the queues:
 https://laravel.com/docs/11.x/queues#supervisor-configuration
