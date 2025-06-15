@@ -27,23 +27,6 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    /**
-     * Get category name by ID
-     *
-     * @param int $id Category ID
-     * @return string|null Category name or null if not found
-     */
-    public static function getNameById($id)
-    {
-        $lang = app()->getLocale();
-
-        if($lang == 'en') {
-            return optional(self::find($id))->name;
-        } else {
-            return optional(self::find($id))->arabic_name;
-        }
-    }
-
      /**
      * Get category slug by ID
      *
