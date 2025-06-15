@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'noha_underwear' => 'Noha Underwear',
     'email' => 'Email',
     'call_us' => 'Call Us',
     'home' => 'Home',
