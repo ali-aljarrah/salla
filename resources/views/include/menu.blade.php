@@ -1,3 +1,9 @@
+
+{{-- <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head> --}}
+
+
 <nav id="navbar" class="navbar navbar-expand-lg fixed-navbar">
     <div class="container">
         <a class="navbar-brand" href="/">شي تريند</a>
@@ -9,7 +15,7 @@
                 <form class="" role="search" method="post">
                     @csrf
                     <div>
-                        <input type="search" class="dgwt-wcas-search-input" name="s" value=""
+                        {{-- <input type="search" class="dgwt-wcas-search-input" name="s" value=""
                             placeholder="ادخل كلمة البحث" autocomplete="off">
 
 
@@ -23,8 +29,34 @@
                                     2.4443766,2.4671358 1.0971012,0.530827 2.3890403,0.681561 3.6130134,0.421538 z">
                                 </path>
                             </svg>
-                        </button>
+                        </button> --}}
 
+{{-- search bar --}}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="search-container">
+        <input type="text" class="form-control search-input" placeholder="ادخل كلمة للبحث">
+
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{-- end --}}
+
+{{-- <div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+      <div class="searchbar">
+        <input class="search_input" type="text" name="" placeholder="Search...">
+        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+      </div>
+    </div>
+  </div> --}}
 
                     </div>
                 </form>

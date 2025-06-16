@@ -49,20 +49,20 @@
                         <div class="countdown mt-3">
                             <div id="countdown-timer" class="d-flex justify-content-center gap-3">
                                 <div class="text-center">
-                                    <div class="seconds fs-1 fw-bold">00</div>
-                                    <div class="text-muted">الثواني</div>
+                                    <div class="seconds stock-cont px-5 fs-1 fw-bold">00</div>
+                                    <div class="text-muted time-label">الثواني</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="minutes fs-1 fw-bold">00</div>
-                                    <div class="text-muted">الدقائق</div>
+                                    <div class="minutes stock-cont px-5 fs-1 fw-bold">00</div>
+                                    <div class="text-muted time-label">الدقائق</div>
                                 </div>
                                   <div class="text-center">
-                                    <div class="hours fs-1 fw-bold">00</div>
-                                    <div class="text-muted">الساعات</div>
+                                    <div class="hours stock-cont px-5 fs-1 fw-bold">00</div>
+                                    <div class="text-muted time-label">الساعات</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="days fs-1 fw-bold">00</div>
-                                    <div class="text-muted">الايام</div>
+                                    <div class="days stock-cont px-5 fs-1 fw-bold">00</div>
+                                    <div class="text-muted time-label">الايام</div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="display-5 fw-bold mb-4">وصف المنتج :</h2>
+                    <h2 class="display-5 fw-bold mb-5 title-des">وصف المنتج :</h2>
                     <div class="product-description">
                          {!! Str::markdown($product->description) !!}
                     </div>
@@ -86,6 +86,7 @@
             </div>
         </div>
     </section>
+
 
     @include('include.footer')
 
