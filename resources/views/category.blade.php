@@ -7,7 +7,7 @@
     @include('include.menu')
 
     <section>
-        <div class="container mb-5">
+        <div class="container">
             <div class="text-center mb-5">
                 <h1 class="category-title">{{$category->name}}</h1>
             </div>
@@ -17,7 +17,7 @@
     @include('components.search-bar')
 
     @if (!empty($categories) && count($categories) > 0)
-        <section class="pb-5 mt-5">
+        <section class="py-3">
             <div class="container">
                 <div class="row">
                     @foreach ($categories as $category)

@@ -1,5 +1,5 @@
     @include('include.head')
-    <title>شي تريند - تواصل</title>
+    <title>شي تريند - الاستبدال و الاسترجاع</title>
 
 
 </head>
@@ -7,7 +7,7 @@
     @include('include.menu')
     @include('components.search-bar')
 
-    <h1>تواصل</h1>
+    <h1>الاستبدال و الاسترجاع</h1>
 
     @include('include.footer')
   </body>

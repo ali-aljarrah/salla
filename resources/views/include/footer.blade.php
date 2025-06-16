@@ -1,17 +1,14 @@
-<script src="{{asset('js/bootstrap.bundle.min.js')}}" defer></script>
-<script src="{{asset('js/main.js')}}" defer></script>
-
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-body footer mt-5 pt-3 px-0 wow fadeIn" data-wow-delay="0.1s">
+<div class="container-fluid bg-dark text-body footer mt-5 pt-3 px-0">
     <div class="container py-2">
         <div class="row g-5 justify-content-center">
             <div class="col-lg-3 col-md-6">
                 <ul>
-                    <li class="my-4 text-center active"><a class="quick-links" href="">الرئيسية</a></li>
-                    <li class="my-4 text-center"><a class="quick-links" href="">تواصل معنا</a></li>
-                    <li class="my-4 text-center"><a class="quick-links" href="">الاستبدال والاسترجاع</a></li>
-                    <li class="my-4 text-center"><a class="quick-links" href="">سياسة الخصوصية </a></li>
-                    <li class="my-4 text-center"><a class="quick-links" href="">الشروط والأحكام</a></li>
+                    <li class="my-4 text-center"><a class="quick-links {{request()->is('/') ? "active" : ""}}" href="/">الرئيسية</a></li>
+                    <li class="my-4 text-center"><a class="quick-links {{request()->is('contact') ? "active" : ""}}" href="/contact">تواصل معنا</a></li>
+                    <li class="my-4 text-center"><a class="quick-links {{request()->is('retrun-policy') ? "active" : ""}}" href="/retrun-policy">الاستبدال والاسترجاع</a></li>
+                    <li class="my-4 text-center"><a class="quick-links {{request()->is('privacy-policy') ? "active" : ""}}" href="/privacy-policy">سياسة الخصوصية </a></li>
+                    <li class="my-4 text-center"><a class="quick-links {{request()->is('conditions-policy') ? "active" : ""}}" href="/conditions-policy">الشروط والأحكام</a></li>
                 </ul>
             </div>
              <div class="col-lg-3 col-md-6">
@@ -50,3 +47,5 @@
 
 
 <!-- Footer End -->
+<script src="{{asset('js/bootstrap.bundle.min.js')}}" defer></script>
+<script src="{{asset('js/main.js')}}" defer></script>

@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function productPage($id, $slug) {
         $product = Product::where('is_active', 1)->where('id', $id)->with('options')->firstOrFail();
-
+dd($product);
         return view('product', [
             'product' => $product
         ]);

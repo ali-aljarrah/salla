@@ -10,5 +10,14 @@ Route::get('/', [HomeController::class, 'homePage'])->name('homePage');
 Route::get('/product/{id}/{slug}', [HomeController::class, 'productPage'])->name('productPage');
 Route::get('/category/{id}/{slug}', [HomeController::class, 'categoryPage'])->name('categoryPage');
 Route::get('/contact', [HomeController::class, 'contactPage'])->name('contactPage');
+Route::get('/retrun-policy', function() {
+    return view('retrun-policy');
+});
+Route::get('/privacy-policy', function() {
+    return view('privacy-policy');
+});
+Route::get('/conditions-policy', function() {
+    return view('conditions-policy');
+});
 
 // Route::post('/contact', [HomeController::class, 'submitContactForm'])->name('contact.submit');

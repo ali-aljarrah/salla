@@ -7,7 +7,7 @@
     @include('include.menu')
     @include('components.search-bar')
     @if (!empty($categories) && count($categories) > 0)
-        <section class="pb-5">
+        <section class="pb-3">
             <div class="container">
                 <div class="row">
                     @foreach ($categories as $category)
@@ -27,7 +27,7 @@
 
 {{-- prodact card --}}
 
-    <section class="pb-5">
+    <section class="pb-2">
         <div class="container">
             <div class="row">
                 @if (!empty($products) && count($products) > 0)
