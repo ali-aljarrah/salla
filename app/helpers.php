@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
-
 if (!function_exists('arabicSlug')) {
     function arabicSlug($string) {
         // Replace spaces with dashes

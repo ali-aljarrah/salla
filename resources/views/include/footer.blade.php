@@ -47,5 +47,7 @@
 
 
 <!-- Footer End -->
+ <script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}" defer></script>
 <script src="{{asset('js/main.js')}}" defer></script>
+<script src="{{asset('js/search.js')}}" defer></script>

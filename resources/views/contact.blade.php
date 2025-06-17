@@ -1,46 +1,56 @@
-    @include('include.head')
-    <title>شي تريند - تواصل</title>
+@include('include.head')
+<title>شي تريند - تواصل</title>
 
-
+<link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 </head>
-  <body>
+
+<body>
     @include('include.menu')
 
-  <section class="py-3">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-12">
-                  <h2 class="text-center dark-color contact-title">تواصل معنا:</h2>
-                  <p class="text-center contact-title-sec red-color">966549485616 واتس اب </p>
-                  <p class="text-center contact-title-sec red-color">info@shitrend.com</p>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <section class="py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="mb-3">
-                  <input type="text" class="form-control form-group" id="exampleFormControlInput2" placeholder="الاسم الكامل">
-                </div>
-                <div class="mb-3">
-                  <input type="email" class="form-control form-group" id="exampleFormControlInput1" placeholder="البريد الإلكتروني">
-                </div>
-                <div class="mb-3">
-                  <textarea class="form-control form-group" id="exampleFormControlTextarea1"  placeholder=" الرسالة" rows="3"></textarea>
-                </div>
-                <div class="field-group">
-                  <button class="btn btn-success btn-form" type="submit">
-                      <span>ارسال</span>
-                  </button>
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-center dark-color contact-title">تواصل معنا:</h2>
+                    <p class="text-center contact-title-sec red-color">966549485616 واتس اب </p>
+                    <p class="text-center contact-title-sec red-color"><a class="red-color" href="mailto:info@shitrend.com">info@shitrend.com</a></p>
                 </div>
             </div>
         </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="contactSubmitForm" name="contactSubmitForm" action="{{ route('contact.submit') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-group" id="fullName" name="fullName"
+                                placeholder="الاسم الكامل">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control form-group" id="email" name="email"
+                                placeholder="البريد الإلكتروني">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control form-group" id="message" name="message"
+                                placeholder=" الرسالة" rows="3"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <button class="btn btn-success btn-form" type="submit">
+                                <span>ارسال</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     @include('include.footer')
-  </body>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script src="{{asset('js/contact.js')}}"></script>
+</body>
+
 </html>

@@ -191,6 +191,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'fullname' => 'Full Name',
+        'fullName' => 'Full Name',
+        'email' => 'Emaul',
+        'message' => 'Message',
+        'phone' => 'Phone Number',
+        'address' => 'Address',
+        'product_option_id' => 'Price Offer',
+        // Add more custom attributes as needed
+    ],
 
 ];

@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
     public function productPage($id, $slug) {
         $product = Product::where('is_active', 1)->where('id', $id)->with('options')->firstOrFail();
-// dd($product);
+
         return view('product', [
             'product' => $product
         ]);
@@ -46,37 +47,56 @@ class HomeController extends Controller
         return view('contact');
     }
 
-    // public function submitContactForm(Request $request) {
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
 
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|email|max:255',
-    //         'message' => 'required|string',
-    //         'g-recaptcha-response' => 'required|recaptcha'
-    //     ]);
+        $products = Product::where('name', 'like', "%{$query}%")
+            ->limit(10)
+            ->get(['id', 'name', 'preview_image']);
 
-    //     if ($validator->fails()) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'errors' => $validator->errors()->messages()
-    //         ], 422);
-    //     }
+        return response()->json($products);
+    }
 
-    //     // Prepare the form data as an associative array
-    //     $formData = [
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'subject' => $request->subject ?? 'Contact Form Submission', // Default subject if not provided
-    //         'message' => $request->message
-    //     ];
+    public function submitContactForm(Request $request) {
 
+        $validator = Validator::make($request->all(), [
+            'fullName' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
 
-    //     // Process the form...
-    //     Mail::to(env('MAIL_TO_ADDRESS'))->send(new ContactEmail($formData));
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()->messages()
+            ], 422);
+        }
 
-    //     return response()->json([
-    //         'success' => true,
-    //         'message' => __('messages.contact_success')
-    //     ]);
-    // }
+        // Prepare the form data as an associative array
+        $formData = [
+            'name' => $request->fullName,
+            'email' => $request->email,
+            'message' => $request->message
+        ];
+
+        try {
+            // Process the form...
+            Mail::to(config('mail.from.address'))
+            ->locale('ar')
+            ->send(new ContactEmail($formData));
+
+            return response()->json([
+                'success' => true,
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error($e);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'حدث خطأ أثناء معالجة طلبك. يرجى المحاولة لاحقاً.'
+            ], 500);
+        }
+    }
 }

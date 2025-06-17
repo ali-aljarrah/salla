@@ -209,7 +209,7 @@
 
     @include('include.footer')
 
-    <script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
+
     <script src="{{asset('js/toastr.min.js')}}"></script>
 
     <script>
@@ -271,7 +271,7 @@
 
             var $form = $(this);
             const $submitBtn = $(this).find('[type="submit"]');
-            $submitBtn.prop('disabled', true).text('يجري المعالجة...');
+            $submitBtn.prop('disabled', true).text('جاري المعالجة...');
 
             // Get form values
             var product_option_id = $('input[name="productOption"]:checked').val();

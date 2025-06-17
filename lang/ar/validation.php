@@ -193,6 +193,9 @@ return [
 
     'attributes' => [
         'fullname' => 'الاسم الكامل',
+        'fullName' => 'الاسم الكامل',
+        'email' => 'البريد الاكتروني',
+        'message' => 'الرسالة',
         'phone' => 'رقم الهاتف',
         'address' => 'العنوان',
         'product_option_id' => 'عرض السعر',
