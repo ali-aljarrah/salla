@@ -98,9 +98,10 @@ class ProductResource extends Resource
                                 ->reorderable()
                     ]),
 
-                    Forms\Components\Section::make('خيارات طلب المنتج')
+                    Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Repeater::make('options')
+                            ->label('خيارات طلب المنتج')
                             ->relationship()
                             ->schema([
                                 Forms\Components\TextInput::make('title')
@@ -140,7 +141,6 @@ class ProductResource extends Resource
                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
                             ->defaultItems(1)
                             ->collapsible()
-                            ->collapsed()
                             ->addActionLabel('اضافة خيار'),
                     ]),
 

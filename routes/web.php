@@ -22,5 +22,6 @@ Route::get('/conditions-policy', function() {
 });
 
 Route::post('/submit-order', [OrderController::class, 'submit'])->name('orders-submit');
+Route::get('order/success', [OrderController::class, 'success'])->name('order.success');
 
 // Route::post('/contact', [HomeController::class, 'submitContactForm'])->name('contact.submit');

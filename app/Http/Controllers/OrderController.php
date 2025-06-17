@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -61,16 +62,27 @@ class OrderController extends Controller
                 ->locale('ar')
                 ->send(new OrderConfirmation($orderData));
 
+            session(['orderData' => $orderData]);
+
             return response()->json([
                 'success' => true,
-                'message' => 'تم إرسال الطلب بنجاح!',
+                'redirect_url' => route('order.success'),
             ]);
 
         } catch (\Exception $e) {
+            Log::error($e);
+
             return response()->json([
                 'success' => false,
                 'message' => 'حدث خطأ أثناء معالجة طلبك. يرجى المحاولة لاحقاً.'
             ], 500);
         }
+    }
+
+    public function success() {
+        return view('order-success', [
+            'orderData' => session('orderData'),
+            'products' => Product::where('is_active', 1)->limit(8)->get()
+        ]);
     }
 }

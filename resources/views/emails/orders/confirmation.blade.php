@@ -1,3 +1,13 @@
+@component('mail::layout', ['rtl' => true])
+@slot('header')
+@component('mail::header', ['url' => config('app.url')])
+{{ config('app.name') }}
+@endcomponent
+@endslot
+
+<!-- RTL Email Content -->
+<div style="direction: rtl; text-align: right; font-family: 'Tahoma', Arial, sans-serif;">
+
 @component('mail::message')
 # تأكيد استلام طلب جديد
 
@@ -27,3 +37,5 @@
 شكراً لكم،
 فريق {{ config('app.name') }}
 @endcomponent
+
+</div>

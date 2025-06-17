@@ -193,6 +193,10 @@
                                 <hr>
                             </div>
                             <div class="col-lg-12 text-center">
+                                <div class="policy-stat">
+                                    <p>قرأت وأوافق على الشروط والأحكام&nbsp;وسياسة&nbsp;الخصوصية</p>
+                                    <input type="radio" checked="" disabled="">
+                                </div>
                                 <input type="hidden" name="productID" value="{{$product->id}}">
                                 <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد الطلب</button>
                             </div>
@@ -212,10 +216,6 @@
         // Get the product options
         var productOptions = @json($product->options);
 
-        var totalPrice = productOptions[0].price;
-        var shippingFee = productOptions[0].has_shipping_fee ? parseFloat(productOptions[0].shipping_fees) : 0;
-        var grandTotal = productOptions[0].has_shipping_fee ? productOptions[0].price + parseFloat(productOptions[0].shipping_fees) : productOptions[0].price;
-
         document.getElementById('total-price').innerHTML = productOptions[0].price;
         document.getElementById('shipping-fee').innerHTML = productOptions[0].has_shipping_fee ? parseFloat(productOptions[0].shipping_fees) : 0;
         document.getElementById('grand-total').innerHTML = productOptions[0].has_shipping_fee ? productOptions[0].price + parseFloat(productOptions[0].shipping_fees) : productOptions[0].price;
@@ -227,20 +227,12 @@
             btn.addEventListener('change', function() {
                 if (this.checked) {
                     var selectedOption = productOptions.find(option => option.id == this.value);
-
                     document.getElementById('total-price').innerHTML = selectedOption.price;
-                    totalPrice = selectedOption.price;
-
                     if(selectedOption.has_shipping_fee) {
                         document.getElementById('shipping-fee').innerHTML = parseFloat(selectedOption.shipping_fees);
                         document.getElementById('grand-total').innerHTML = selectedOption.price + parseFloat(selectedOption.shipping_fees);
-
-                        shippingFee = parseFloat(selectedOption.shipping_fees);
-                        grandTotal = selectedOption.price + parseFloat(selectedOption.shipping_fees);
                     } else {
                         document.getElementById('grand-total').innerHTML = selectedOption.price;
-
-                        grandTotal = selectedOption.price;
                     }
                 }
             });
@@ -334,8 +326,7 @@
                 data: $form.serialize(),
                 success: function(response) {
                     if (response.success) {
-                        toastr.success('تم إرسال الطلب بنجاح!');
-                        $form[0].reset();
+                        window.location.href = response.redirect_url;
                     }
                 },
                error: function(xhr) {
