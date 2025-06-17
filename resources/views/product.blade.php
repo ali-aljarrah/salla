@@ -109,12 +109,12 @@
             <div class="row">
                 <div class="col-lg-12 mb-4">
                     <div class="w-100 shadow-1 rounded p-2 text-center">
-                        <p>الرجاء اختيار الكمية</p>
+                        <p class="mb-0">الرجاء اختيار الكمية</p>
                     </div>
 
                     <form action="">
                         @csrf
-                        <div class="row">
+                        <div class="row my-3">
                             @foreach ($product->options as $index => $option)
                                 <div class="col-lg-12 mb-2">
                                     <div class="option-wrapper">
@@ -125,13 +125,32 @@
                                             </label>
                                         </div>
                                         @if ($option->has_shipping_fee)
-                                            <div>{{$option->shipping_fees}}</div>
+                                            <div>رسوم التوصيل {{$option->shipping_fees}} ريال</div>
                                         @else
                                             <div>شحن مجاني</div>
                                         @endif
                                     </div>
                                 </div>
                             @endforeach
+                                <div class="col-lg-12 mb-2">
+                                    <p class="mb-0">الدفع عند الاستلام</p>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="">
+                                        <label for="fullname" class="form-label">الاسم الكامل:</label>
+                                        <input class="form-control" type="text" id="fullname" name="fullname" value="">
+                                    </div>
+                                </div>
+                                 <div class="col-lg-6 mb-4">
+                                    <div class="">
+                                        <label for="phone" class="form-label">رقم الموبايل:</label>
+                                        <input class="form-control" type="text" id="phone" name="phone" value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-4">
+                                    <label for="address" class="form-label">العنوان:</label>
+                                    <textarea class="form-control" name="address" id="address" cols="30" rows="5"></textarea>
+                                </div>
                         </div>
                     </form>
                 </div>
