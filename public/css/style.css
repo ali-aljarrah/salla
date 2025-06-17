@@ -71,6 +71,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #dadada;
     color: #0a0a0a;
+    border: 1px solid;
 }
 
 .search-icon {
@@ -188,4 +189,44 @@ body {
 
 .shadow-1 {
     box-shadow: 0 0 5px 0 gray;
+}
+
+
+/* contact page */
+
+.contact-title-sec{
+    
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contact-title{
+    line-height: 55px;
+    font-size: 22px;
+}
+
+.dark-color{
+    color: #343a40;
+}
+.red-color{
+    color: red;
+}
+
+.btn-form{
+    width: 100%;
+    font-weight: bold;
+}
+
+.form-group{
+    background: #c6c7c8e8;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+/* return page */
+
+.return-title{
+    font-size: 18px;
+    line-height: 40px;
 }
