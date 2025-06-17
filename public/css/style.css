@@ -191,11 +191,37 @@ body {
     box-shadow: 0 0 5px 0 gray;
 }
 
+.submit-order-btn {
+    width: 50%;
+    margin: auto;
+    background-color: #ed4f2a!important;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 14px;
+        padding-top: 20px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    line-height: 1em;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);
+        border-style: solid;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;
+}
+
+.submit-order-btn:disabled {
+    background-color: #e77e66!important;
+    cursor: not-allowed;
+}
+
 
 /* contact page */
 
 .contact-title-sec{
-    
+
     font-size: 18px;
     font-weight: bold;
 }

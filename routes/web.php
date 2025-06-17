@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,5 +20,7 @@ Route::get('/privacy-policy', function() {
 Route::get('/conditions-policy', function() {
     return view('conditions-policy');
 });
+
+Route::post('/submit-order', [OrderController::class, 'submit'])->name('orders-submit');
 
 // Route::post('/contact', [HomeController::class, 'submitContactForm'])->name('contact.submit');
