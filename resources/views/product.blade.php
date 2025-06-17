@@ -121,7 +121,7 @@
                                     <div>
                                         <label for="option-{{$index+1}}">
                                             <span>{{$option->title}} {{$option->price}} ريال</span>
-                                            <input type="radio" value="{{$option->id}}" name="product-option"
+                                            <input type="radio" value="{{$option->id}}" name="productOption"
                                                 id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
                                         </label>
                                     </div>
@@ -193,6 +193,7 @@
                                 <hr>
                             </div>
                             <div class="col-lg-12 text-center">
+                                <input type="hidden" name="productID" value="{{$product->id}}">
                                 <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد الطلب</button>
                             </div>
                         </div>
@@ -219,7 +220,7 @@
         document.getElementById('shipping-fee').innerHTML = productOptions[0].has_shipping_fee ? parseFloat(productOptions[0].shipping_fees) : 0;
         document.getElementById('grand-total').innerHTML = productOptions[0].has_shipping_fee ? productOptions[0].price + parseFloat(productOptions[0].shipping_fees) : productOptions[0].price;
 
-        const optionBtns = document.querySelectorAll('input[name="product-option"]');
+        const optionBtns = document.querySelectorAll('input[name="productOption"]');
 
         // Calculate the values after the option change
         optionBtns.forEach(btn => {
@@ -281,7 +282,7 @@
             $submitBtn.prop('disabled', true).text('يجري المعالجة...');
 
             // Get form values
-            var product_option_id = $('input[name="product-option"]:checked').val();
+            var product_option_id = $('input[name="productOption"]:checked').val();
             var fullname = $('#fullname').val().trim();
             var phone = $('#phone').val().trim();
             var address = $('#address').val().trim();
@@ -293,7 +294,7 @@
             var isValid = true;
 
             if (!product_option_id) {
-                showFieldError('product-option', 'الرجاء اختيار عرض السعر');
+                showFieldError('productOption', 'الرجاء اختيار عرض السعر');
                 isValid = false;
             }
 
