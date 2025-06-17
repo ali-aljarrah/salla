@@ -1,7 +1,7 @@
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-body footer mt-5 pt-3 px-0">
+<div class="bg-dark text-body footer mt-5 pt-3 px-0">
     <div class="container py-2">
-        <div class="row g-5 justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-lg-3 col-md-6">
                 <ul>
                     <li class="my-4 text-center"><a class="quick-links {{request()->is('/') ? "active" : ""}}" href="/">الرئيسية</a></li>
@@ -33,11 +33,11 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid copyright">
+    <div class="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   <h6 class="text-center mb-5 mb-md-1 py-2"> جميع الحقوق محفوطة لشركة شي تريند</h6>
+                   <h6 class="text-center mb-2 mb-md-1 py-2"> جميع الحقوق محفوطة لشركة شي تريند</h6>
                 </div>
             </div>
         </div>

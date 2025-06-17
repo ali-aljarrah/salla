@@ -26,7 +26,7 @@
                                 <div class="text-center w-100">
                                     <a class="category-link" href="/category/{{$category->id}}/{{arabicSlug($category->name)}}">{{$category->name}}</a>
                                 </div>
-                                <div>|</div>
+                                <div class="d-none d-lg-block">|</div>
                             </div>
                         </div>
                     @endforeach
@@ -40,7 +40,7 @@
             <div class="row">
                 @if (!empty($products) && count($products) > 0)
                     @foreach ($products as $product)
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="col-lg-3 col-md-4 col-6 mb-4">
                             @include('components.product-card', ['product' => $product])
                         </div>
                     @endforeach

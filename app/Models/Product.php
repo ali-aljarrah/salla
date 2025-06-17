@@ -31,6 +31,7 @@ class Product extends Model
         'promo',//
         'storage_quantity',//
         'is_active',//
+        'preview_image',
     ];
 
     protected $casts = [

@@ -5,6 +5,7 @@
 body {
     padding-top: 95px;
     color: #67768e;
+    overflow-x: hidden;
 }
 
 .navbar.fixed-navbar{
@@ -29,7 +30,7 @@ body {
 }
 
 .category-link {
-    color: #ed4f2a;
+    color: var(--main-color);
     font-weight: 700;
     font-size: 15px;
     text-decoration: none;
@@ -194,7 +195,7 @@ body {
 .submit-order-btn {
     width: 50%;
     margin: auto;
-    background-color: #ed4f2a!important;
+    background-color: var(--main-color)!important;
     color: #FFFFFF;
     font-size: 20px;
     font-weight: 700;

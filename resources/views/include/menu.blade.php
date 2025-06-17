@@ -1,10 +1,7 @@
-<nav id="navbar" class="navbar navbar-expand-lg fixed-navbar">
+<nav id="navbar" class="navbar navbar-expand-lg fixed-navbar mw-100">
     <div class="container">
         <a class="navbar-brand" href="/">شي تريند</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center ms-5 d-none d-lg-flex" id="navbarSupportedContent">
             <div>
                 <form class="" role="search" method="post">
                     @csrf
