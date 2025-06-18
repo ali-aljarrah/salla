@@ -14,7 +14,7 @@ class CreateCategory extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Category created';
+        return 'تم اضافة القسم بنجاح';
     }
 
     protected function getRedirectUrl(): string

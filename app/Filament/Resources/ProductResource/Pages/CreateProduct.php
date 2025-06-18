@@ -14,7 +14,7 @@ class CreateProduct extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Product created';
+        return 'تم اضافة القسم بنجاح';
     }
 
     protected function getRedirectUrl(): string
