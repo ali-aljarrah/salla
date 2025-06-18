@@ -56,8 +56,9 @@ body {
 
 .product-description {
     color: #333333;
+    font-size: 18px;
+    font-weight: 500;
 }
-
 
 /* search bar */
 

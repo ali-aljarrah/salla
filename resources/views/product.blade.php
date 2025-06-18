@@ -110,11 +110,11 @@
     </section>
 
     {{-- وصف المنتج --}}
-    <section class="py-5">
+    <section class="py-3">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h2 class="display-5 fw-bold mb-5 title-des">وصف المنتج :</h2>
+                    <h2 class="display-5 fw-bold mb-3 title-des">وصف المنتج :</h2>
                     <div class="product-description">
                         {!! Str::markdown($product->description) !!}
                     </div>
