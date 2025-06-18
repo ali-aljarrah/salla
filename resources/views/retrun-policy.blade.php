@@ -10,7 +10,10 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-12">
-									<p class="return-title">سياسة الإسترجاع و الإستبدال</p>
+                <h1>شي تريند</h1>
+                <br>
+                <h2>سياسة الإسترجاع و الإستبدال</h2>
+                <br>
                   <p  class="return-title">سياسات ارجاع او استبدال الطلبات من شركة سلة :</p>
                   <p  class="return-title">-المدة المسموحة لإرجاع المنتجات هي 7 أيام من تاريخ استلام الطلب.</p>
                   <p  class="return-title">-يجب ان يكون المنتج بحالته الاصلية مع التغليف الاصلي</p>
@@ -33,7 +36,7 @@
                   <p  class="return-title">شركة شي تريند</p>
                   <p  class="return-title">السعودية , الرياض , حي النسيم , شارع البستان</p>
                   <p>&nbsp;</p>
-                  <p>&nbsp;</p>		
+                  <p>&nbsp;</p>
               </div>
           </div>
       </div>
