@@ -144,15 +144,19 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                             @foreach ($product->options as $index => $option)
                             <div class="col-lg-12 mb-2">
                                 <div class="option-wrapper choose-cont">
-                                    <label for="option-{{$index+1}}">
+                                    <label class="w-100" for="option-{{$index+1}}">
                                         <input type="radio" value="{{$option->id}}" name="productOption"
                                             id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
-                                            <span>{{$option->title}} {{$option->price}} ريال</span>
-                                            @if ($option->has_shipping_fee)
-                                            <div class="f-12 py-3">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
-                                            @else
-                                            <div>شحن مجاني</div>
-                                            @endif
+                                            <span><span class="black-color">{{$option->title}}</span> <span class="main-color fw-bold">{{$option->price}} ريال</span></span>
+                                            <div class="d-flex justify-content-between align-items-end">
+                                                @if ($option->has_shipping_fee)
+                                                <div class="f-12 mt-2 mb-3 dark-color">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
+                                                @else
+                                                <div>شحن مجاني</div>
+                                                @endif
+
+                                                <div class="saved-cont">وفرت <span>{{$option->price_before_discount}}</span> ريال</div>
+                                            </div>
                                     </label>
                                 </div>
                             </div>
