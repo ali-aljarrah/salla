@@ -161,9 +161,9 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                                 </div>
                             </div>
                             @endforeach
-                            <div>
+                            {{-- <div>
                                 <h5 class="red-color mt-3">احصل على خصم اضافي 10% عند الدفع اونلاين </h5>
-                            </div>
+                            </div> --}}
                             <div class="my-4 py-3 px-4 pro-card">
                                 <div class="col-lg-12 mb-2">
                                     <p class="mb-3 dark-color contact-title-sec">الدفع عند الاستلام</p>
