@@ -17,17 +17,7 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
-<link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
-
-<style>
-  .owl-carousel {
-    width: 100%;
-  }
-  .owl-carousel .item {
-    width: 100%;
-    padding: 0 15px; /* Adjust spacing */
-  }
-</style>
+<link rel="stylesheet" href="{{asset('css/swiper-bundle.min.css')}}">
 </head>
 
 <body>
@@ -42,15 +32,17 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 
             {{-- صور المنتج --}}
             @if (!empty($product->images) && count($product->images) > 0)
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="owl-carousel owl-theme">
-                        @foreach ($product->images as $index => $image)
-                            <div class="item">
-                                <img loading="lazy" width="350" height="350" src="{{asset('storage/' . $image)}}"
-                                     alt="{{$product->name}} - {{$index+1}}">
-                            </div>
-                        @endforeach
+            <div class="row">
+                <div class="col-lg-11 mx-auto">
+                     <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach ($product->images as $index => $image)
+                                <div class="swiper-slide">
+                                    <img loading="lazy" class="w-100 img-fluid" width="250" height="250" src="{{asset('storage/' . $image)}}"
+                                        alt="{{$product->name}} - {{$index+1}}">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,18 +144,16 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                             @foreach ($product->options as $index => $option)
                             <div class="col-lg-12 mb-2">
                                 <div class="option-wrapper choose-cont">
-                                    <div>
-                                        <label for="option-{{$index+1}}">
-                                            <input type="radio" value="{{$option->id}}" name="productOption"
-                                                id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
-                                                <span>{{$option->title}} {{$option->price}} ريال</span>
-                                        </label>
-                                    </div>
-                                    @if ($option->has_shipping_fee)
-                                    <div class="f-12 py-3">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
-                                    @else
-                                    <div>شحن مجاني</div>
-                                    @endif
+                                    <label for="option-{{$index+1}}">
+                                        <input type="radio" value="{{$option->id}}" name="productOption"
+                                            id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
+                                            <span>{{$option->title}} {{$option->price}} ريال</span>
+                                            @if ($option->has_shipping_fee)
+                                            <div class="f-12 py-3">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
+                                            @else
+                                            <div>شحن مجاني</div>
+                                            @endif
+                                    </label>
                                 </div>
                             </div>
                             @endforeach
@@ -250,7 +240,9 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 
 
     <script src="{{asset('js/toastr.min.js')}}"></script>
-<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('js/swiper-bundle.min.js')}}" defer></script>
+    <script src="{{asset('js/product.js')}}" defer></script>
+
     <script>
         // Get the product options
         var productOptions = @json($product->options);
@@ -430,9 +422,6 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             }
         }, 1000);
 
-        $(document).ready(function(){
-            $(".owl-carousel").owlCarousel();
-        });
     </script>
 </body>
 
