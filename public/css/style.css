@@ -51,7 +51,7 @@ body {
 .img-orange-border{
     border-style: solid;
     border-width: 1px 1px 1px 1px;
-    border-color: #eb4d2c;
+    border-color: var(--main-color);
 }
 
 .product-description {

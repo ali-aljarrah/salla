@@ -2,7 +2,7 @@
 
 <title>اتصل بنا - شي تريند | خدمة العملاء 24/7</title>
 <meta name="description"
-content="تواصل مع فريق شي تريند عبر الهاتف أو الواتساب أو البريد الإلكتروني. نحن هنا لمساعدتك!">
+    content="تواصل مع فريق شي تريند عبر الهاتف أو الواتساب أو البريد الإلكتروني. نحن هنا لمساعدتك!">
 
 <meta property="og:title" content="اتصل بنا - شي تريند | خدمة العملاء 24/7">
 <meta property="og:description"
@@ -15,6 +15,7 @@ content="تواصل مع فريق شي تريند عبر الهاتف أو ال�
 </head>
 
 <body>
+    @include('include.loader')
     @include('include.menu')
 
     <section class="py-3">
@@ -23,7 +24,8 @@ content="تواصل مع فريق شي تريند عبر الهاتف أو ال�
                 <div class="col-lg-12">
                     <h1 class="text-center dark-color contact-title">تواصل معنا:</h1>
                     <p class="text-center contact-title-sec main-color">966549485616 واتس اب </p>
-                    <p class="text-center contact-title-sec main-color"><a class="main-color" href="mailto:info@shitrend.com">info@shitrend.com</a></p>
+                    <p class="text-center contact-title-sec main-color"><a class="main-color"
+                            href="mailto:info@shitrend.com">info@shitrend.com</a></p>
                 </div>
             </div>
         </div>
@@ -33,7 +35,8 @@ content="تواصل مع فريق شي تريند عبر الهاتف أو ال�
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <form id="contactSubmitForm" name="contactSubmitForm" action="{{ route('contact.submit') }}" method="POST">
+                    <form id="contactSubmitForm" name="contactSubmitForm" action="{{ route('contact.submit') }}"
+                        method="POST">
                         @csrf
                         <div class="mb-3">
                             <input type="text" class="form-control form-group" id="fullName" name="fullName"
@@ -44,8 +47,8 @@ content="تواصل مع فريق شي تريند عبر الهاتف أو ال�
                                 placeholder="البريد الإلكتروني">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control form-group" id="message" name="message"
-                                placeholder=" الرسالة" rows="3"></textarea>
+                            <textarea class="form-control form-group" id="message" name="message" placeholder=" الرسالة"
+                                rows="3"></textarea>
                         </div>
                         <div class="field-group">
                             <button class="btn btn-success btn-form" type="submit">

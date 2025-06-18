@@ -1,12 +1,10 @@
 @include('include.head')
 
 <title>شي تريند | {{$product->name}} | {{$product->price}} | ريال</title>
-<meta name="description"
-content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
+<meta name="description" content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
 
 <meta property="og:title" content="شي تريند | {{$product->name}} | {{$product->price}} | ريال">
-<meta property="og:description"
-    content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
+<meta property="og:description" content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
 
 <meta property="og:type" content="product">
 <meta property="product:price:amount" content="{{$product->price}}">
@@ -21,6 +19,7 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 </head>
 
 <body>
+    @include('include.loader')
     @include('include.menu')
 
     <section>
@@ -34,13 +33,13 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             @if (!empty($product->images) && count($product->images) > 0)
             <div class="row">
                 <div class="col-lg-11 mx-auto">
-                     <div class="swiper-container">
+                    <div class="swiper-container">
                         <div class="swiper-wrapper">
                             @foreach ($product->images as $index => $image)
-                                <div class="swiper-slide">
-                                    <img loading="lazy" class="w-100 img-fluid" width="250" height="250" src="{{asset('storage/' . $image)}}"
-                                        alt="{{$product->name}} - {{$index+1}}">
-                                </div>
+                            <div class="swiper-slide">
+                                <img loading="lazy" class="w-100 img-fluid" width="250" height="250"
+                                    src="{{asset('storage/' . $image)}}" alt="{{$product->name}} - {{$index+1}}">
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -102,7 +101,8 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="w-100 shadow-1 py-1 text-center">
-                        <p class="text-count">متبقي في المخزون <span style="color:#aaf600">{{$product->storage_quantity}}</span> قطعة</p>
+                        <p class="text-count">متبقي في المخزون <span
+                                style="color:#aaf600">{{$product->storage_quantity}}</span> قطعة</p>
                     </div>
                 </div>
             </div>
@@ -129,16 +129,21 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             <div class="row">
                 <div class="col-lg-10 mx-auto mb-4">
                     <div class="choose-qty w-100 shadow-1 rounded p-2 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000"
+                            class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4" />
                         </svg>
                         <p class="mb-0 dark-color">الرجاء اختيار الكمية</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000"
+                            class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4" />
                         </svg>
                     </div>
 
-                    <form id="orderSubmitForm" name="orderSubmitForm" action="{{ route('orders-submit') }}" method="POST">
+                    <form id="orderSubmitForm" name="orderSubmitForm" action="{{ route('orders-submit') }}"
+                        method="POST">
                         @csrf
                         <div class="row my-3">
                             @foreach ($product->options as $index => $option)
@@ -146,17 +151,20 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                                 <div class="option-wrapper choose-cont">
                                     <label class="w-100" for="option-{{$index+1}}">
                                         <input type="radio" value="{{$option->id}}" name="productOption"
-                                            id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
-                                            <span><span class="black-color">{{$option->title}}</span> <span class="main-color fw-bold">{{$option->price}} ريال</span></span>
-                                            <div class="d-flex justify-content-between align-items-end">
-                                                @if ($option->has_shipping_fee)
-                                                <div class="f-12 mt-2 mb-3 dark-color">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
-                                                @else
-                                                <div>شحن مجاني</div>
-                                                @endif
+                                            id="option-{{$index+1}}" {{$index==0 ? 'checked' : '' }}>
+                                        <span><span class="black-color">{{$option->title}}</span> <span
+                                                class="main-color fw-bold">{{$option->price}} ريال</span></span>
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            @if ($option->has_shipping_fee)
+                                            <div class="f-12 mt-2 mb-3 dark-color">رسوم التوصيل
+                                                {{$option->shipping_fees}} ريال</div>
+                                            @else
+                                            <div>شحن مجاني</div>
+                                            @endif
 
-                                                <div class="saved-cont">وفرت <span>{{$option->price_before_discount}}</span> ريال</div>
-                                            </div>
+                                            <div class="saved-cont">وفرت <span>{{$option->price_before_discount}}</span>
+                                                ريال</div>
+                                        </div>
                                     </label>
                                 </div>
                             </div>
@@ -171,13 +179,15 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                                 <div class="col-lg-12 mb-4">
                                     <div>
                                         <label for="fullname" class="form-label">الاسم الكامل:</label>
-                                        <input class="form-control form-group" type="text" id="fullname" name="fullname" value="" >
+                                        <input class="form-control form-group" type="text" id="fullname" name="fullname"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mb-4">
                                     <div class="">
                                         <label for="phone" class="form-label">رقم الموبايل:</label>
-                                        <input class="form-control form-group" type="text" id="phone" name="phone" value="">
+                                        <input class="form-control form-group" type="text" id="phone" name="phone"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mb-4">
@@ -230,7 +240,8 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                                         <input type="radio" checked="" disabled="">
                                     </div>
                                     <input type="hidden" name="productID" value="{{$product->id}}">
-                                    <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد الطلب</button>
+                                    <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد
+                                        الطلب</button>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +433,7 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             // If the count down is finished, hide the counter
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown-timer").innerHTML = "Discount has ended";
+                document.getElementById("countdown-timer").innerHTML = "انتهى وقت العرض";
             }
         }, 1000);
 

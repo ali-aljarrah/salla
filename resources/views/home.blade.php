@@ -1,53 +1,54 @@
-    @include('include.head')
+@include('include.head')
 
-    <title>شي تريند | متجرك الإلكتروني لأحدث المنتجات</title>
-    <meta name="description"
-    content="اكتشف أحدث المنتجات في شي تريند. تسوق الآن بخصومات حصرية مع توصيل سريع.">
+<title>شي تريند | متجرك الإلكتروني لأحدث المنتجات</title>
+<meta name="description" content="اكتشف أحدث المنتجات في شي تريند. تسوق الآن بخصومات حصرية مع توصيل سريع.">
 
-    <meta property="og:title" content="شي تريند | متجرك الإلكتروني لأحدث المنتجات">
-    <meta property="og:description"
-        content="اكتشف أحدث المنتجات في شي تريند. تسوق الآن بخصومات حصرية مع توصيل سريع.">
+<meta property="og:title" content="شي تريند | متجرك الإلكتروني لأحدث المنتجات">
+<meta property="og:description" content="اكتشف أحدث المنتجات في شي تريند. تسوق الآن بخصومات حصرية مع توصيل سريع.">
 
-    <link rel="canonical" href="{{Request::url()}}">
-    <meta property="og:url" content="{{Request::url()}}">
+<link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
 </head>
-  <body>
+
+<body>
+    @include('include.loader')
     @include('include.menu')
     @include('components.search-bar')
     @if (!empty($categories) && count($categories) > 0)
-        <section class="pb-3">
-            <div class="container">
-                <div class="row">
-                    @foreach ($categories as $category)
-                        <div class="col-lg-3 mb-0 mt-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="text-center w-100">
-                                    <a class="category-link" href="/category/{{$category->id}}/{{arabicSlug($category->name)}}">{{$category->name}}</a>
-                                </div>
-                                <div class="d-none d-lg-block">|</div>
-                            </div>
+    <section class="pb-3">
+        <div class="container">
+            <div class="row">
+                @foreach ($categories as $category)
+                <div class="col-lg-3 mb-0 mt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center w-100">
+                            <a class="category-link"
+                                href="/category/{{$category->id}}/{{arabicSlug($category->name)}}">{{$category->name}}</a>
                         </div>
-                    @endforeach
+                        <div class="d-none d-lg-block">|</div>
+                    </div>
                 </div>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </section>
     @endif
 
-{{-- prodact card --}}
+    {{-- prodact card --}}
 
     <section class="pb-2">
         <div class="container">
             <div class="row">
                 @if (!empty($products) && count($products) > 0)
-                    @foreach ($products as $product)
-                        <div class="col-lg-3 col-md-4 col-6 mb-4">
-                            @include('components.product-card', ['product' => $product])
-                        </div>
-                    @endforeach
+                @foreach ($products as $product)
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    @include('components.product-card', ['product' => $product])
+                </div>
+                @endforeach
 
-                    <div class="col-lg-12">
-                        {{$products->links(data: ['scrollTo' => false])}}
-                    </div>
+                <div class="col-lg-12">
+                    {{$products->links(data: ['scrollTo' => false])}}
+                </div>
                 @else
                 <div class="col-lg-12 text-center">
                     <h2>عذرا, لا يوجد منتجات لعرضها</h2>
@@ -58,5 +59,6 @@
     </section>
 
     @include('include.footer')
-  </body>
+</body>
+
 </html>

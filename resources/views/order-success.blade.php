@@ -1,16 +1,16 @@
-    @include('include.head')
-    <title>شي تريند - شكرا جزيلا</title>
-<meta name="description"
-content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
+@include('include.head')
+<title>شي تريند - شكرا جزيلا</title>
+<meta name="description" content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
 
 <meta property="og:title" content="شي تريند - شكرا جزيلا">
-<meta property="og:description"
-    content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
+<meta property="og:description" content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
 
-    <link rel="canonical" href="{{Request::url()}}">
+<link rel="canonical" href="{{Request::url()}}">
 <meta property="og:url" content="{{Request::url()}}">
 </head>
-  <body>
+
+<body>
+    @include('include.loader')
     @include('include.menu')
 
     <section class="py-5">
@@ -73,14 +73,15 @@ content="شكرا لشرائك من شي تريند, سيتم التواصل م�
             </div>
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-lg-3 mb-4">
-                         @include('components.product-card', ['product' => $product])
-                    </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    @include('components.product-card', ['product' => $product])
+                </div>
                 @endforeach
             </div>
         </div>
     </section>
 
     @include('include.footer')
-  </body>
+</body>
+
 </html>
