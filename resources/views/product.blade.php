@@ -79,7 +79,7 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                     <h2 class="secondary-title">الوقت المتبقي للخصم</h2>
                     <div>
                         <div class="countdown mt-3">
-                            <div id="countdown-timer" class="d-flex justify-content-center gap-3">
+                            <div id="countdown-timer" class="d-flex justify-content-evenly gap-3">
                                 <div class="text-center">
                                     <div class="seconds stock-cont px-5 fs-1 fw-bold">00</div>
                                     <div class="text-muted time-label">الثواني</div>
@@ -108,9 +108,9 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="w-100 shadow-1 rounded p-2 text-center">
-                        <p class="text-count">متبقي في المخزون <span>{{$product->storage_quantity}}</span> قطعة</p>
+                <div class="col-lg-10 mx-auto">
+                    <div class="w-100 shadow-1 py-1 text-center">
+                        <p class="text-count">متبقي في المخزون <span style="color:#aaf600">{{$product->storage_quantity}}</span> قطعة</p>
                     </div>
                 </div>
             </div>
@@ -136,8 +136,14 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 mb-4">
-                    <div class="w-100 shadow-1 rounded p-2 text-center">
-                        <p class="mb-0">الرجاء اختيار الكمية</p>
+                    <div class="choose-qty w-100 shadow-1 rounded p-2 text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+                        </svg>
+                        <p class="mb-0 dark-color">الرجاء اختيار الكمية</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+                        </svg>
                     </div>
 
                     <form id="orderSubmitForm" name="orderSubmitForm" action="{{ route('orders-submit') }}" method="POST">
@@ -145,88 +151,93 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                         <div class="row my-3">
                             @foreach ($product->options as $index => $option)
                             <div class="col-lg-12 mb-2">
-                                <div class="option-wrapper">
+                                <div class="option-wrapper choose-cont">
                                     <div>
                                         <label for="option-{{$index+1}}">
-                                            <span>{{$option->title}} {{$option->price}} ريال</span>
                                             <input type="radio" value="{{$option->id}}" name="productOption"
                                                 id="option-{{$index+1}}" {{$index == 0 ? 'checked' : ''}}>
+                                                <span>{{$option->title}} {{$option->price}} ريال</span>
                                         </label>
                                     </div>
                                     @if ($option->has_shipping_fee)
-                                    <div>رسوم التوصيل {{$option->shipping_fees}} ريال</div>
+                                    <div class="f-12 py-3">رسوم التوصيل {{$option->shipping_fees}} ريال</div>
                                     @else
                                     <div>شحن مجاني</div>
                                     @endif
                                 </div>
                             </div>
                             @endforeach
-                            <div class="col-lg-12 mb-2">
-                                <p class="mb-0">الدفع عند الاستلام</p>
+                            <div>
+                                <h5 class="red-color mt-3">احصل على خصم اضافي 10% عند الدفع اونلاين </h5>
                             </div>
-                            <div class="col-lg-6 mb-4">
-                                <div>
-                                    <label for="fullname" class="form-label">الاسم الكامل:</label>
-                                    <input class="form-control" type="text" id="fullname" name="fullname" value="" placeholder="يرجى ادخال الاسم الكامل">
+                            <div class="my-4 py-3 px-4 pro-card">
+                                <div class="col-lg-12 mb-2">
+                                    <p class="mb-3 dark-color contact-title-sec">الدفع عند الاستلام</p>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="">
-                                    <label for="phone" class="form-label">رقم الموبايل:</label>
-                                    <input class="form-control" type="text" id="phone" name="phone" value="" placeholder="رقم الهاتف يجب ان يكون اقل شي 10 ارقام">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                                <label for="address" class="form-label">العنوان:</label>
-                                <textarea class="form-control" name="address" id="address" cols="30" placeholder="العنوان يجب ان يكون اقل شي 10 احرف"
-                                    rows="5"></textarea>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                                <hr>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <p>المجموع:</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p id="total-price">0</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p>ريال</p>
+                                <div class="col-lg-12 mb-4">
+                                    <div>
+                                        <label for="fullname" class="form-label">الاسم الكامل:</label>
+                                        <input class="form-control form-group" type="text" id="fullname" name="fullname" value="" >
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <p>الشحن:</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p id="shipping-fee">0</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p>ريال</p>
+                                <div class="col-lg-12 mb-4">
+                                    <div class="">
+                                        <label for="phone" class="form-label">رقم الموبايل:</label>
+                                        <input class="form-control form-group" type="text" id="phone" name="phone" value="">
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <p>الاجمالي :</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p id="grand-total">0</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p>ريال</p>
-                                    </div>
+                                <div class="col-lg-12 mb-4">
+                                    <label for="address" class="form-label">العنوان:</label>
+                                    <textarea class="form-control form-group" name="address" id="address" cols="30"
+                                        rows="5"></textarea>
                                 </div>
-                                <hr>
-                            </div>
-                            <div class="col-lg-12 text-center">
-                                <div class="policy-stat">
-                                    <p>قرأت وأوافق على الشروط والأحكام&nbsp;وسياسة&nbsp;الخصوصية</p>
-                                    <input type="radio" checked="" disabled="">
+                                <div class="col-lg-12 mb-4">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="mb-0 f-bold">المجموع:</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold" id="total-price">0</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold">ريال</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="mb-0 f-bold">الشحن:</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold" id="shipping-fee">0</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold">ريال</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="mb-0 f-bold">الاجمالي :</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold" id="grand-total">0</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mb-0 f-bold">ريال</p>
+                                        </div>
+                                    </div>
+                                    <hr>
                                 </div>
-                                <input type="hidden" name="productID" value="{{$product->id}}">
-                                <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد الطلب</button>
+                                <div class="col-lg-12 text-center">
+                                    <div class="policy-stat">
+                                        <p>قرأت وأوافق على الشروط والأحكام&nbsp;وسياسة&nbsp;الخصوصية</p>
+                                        <input type="radio" checked="" disabled="">
+                                    </div>
+                                    <input type="hidden" name="productID" value="{{$product->id}}">
+                                    <button class="submit-order-btn" id="orderSubmitBtn" type="submit">تأكيد الطلب</button>
+                                </div>
                             </div>
                         </div>
                     </form>

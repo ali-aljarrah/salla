@@ -44,7 +44,7 @@ body {
     font-size: 20px;
     color: #525252;
     margin-right: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 22px;
 }
 
 
@@ -263,6 +263,41 @@ body {
     font-size: 15px!important;
 }
 
+.choose-qty {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #aaf600;
+    color: #fff;
+    width: 72%;
+    margin: auto;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.choose-cont {
+    background-color: gainsboro;
+    padding: 5px 13px;
+    border: 2px solid #9d9d9d;
+    border-radius: 15px;
+    margin-bottom: 12px !important;
+}
+
+.f-12 {
+    font-size: 12px;
+}
+
+.f-bold{
+    font-weight: bold;
+}
+
+.pro-card{
+    border: 2px solid #000;
+    border-radius: 14px;
+}
 /* contact page */
 
 .contact-title-sec{
