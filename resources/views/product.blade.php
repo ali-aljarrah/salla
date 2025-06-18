@@ -17,6 +17,17 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
+<link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+
+<style>
+  .owl-carousel {
+    width: 100%;
+  }
+  .owl-carousel .item {
+    width: 100%;
+    padding: 0 15px; /* Adjust spacing */
+  }
+</style>
 </head>
 
 <body>
@@ -32,14 +43,16 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
             {{-- صور المنتج --}}
             @if (!empty($product->images) && count($product->images) > 0)
             <div class="row mb-5">
-                @foreach ($product->images as $index => $image)
-                <div class="col-lg-4 mb-4">
-                    <div>
-                        <img loading="lazy" class="img-fluid" src="{{asset('storage/' . $image)}}"
-                            alt="{{$product->name}} - {{$index}}">
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach ($product->images as $index => $image)
+                            <div class="item">
+                                <img loading="lazy" width="350" height="350" src="{{asset('storage/' . $image)}}"
+                                     alt="{{$product->name}} - {{$index+1}}">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
             </div>
             @endif
 
@@ -226,7 +239,7 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
 
 
     <script src="{{asset('js/toastr.min.js')}}"></script>
-
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script>
         // Get the product options
         var productOptions = @json($product->options);
@@ -405,6 +418,10 @@ content="اشتري {{$product->name}} من شي تريند. . توصيل سري
                 document.getElementById("countdown-timer").innerHTML = "Discount has ended";
             }
         }, 1000);
+
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel();
+        });
     </script>
 </body>
 

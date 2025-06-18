@@ -21,7 +21,7 @@ content="تواصل مع فريق شي تريند عبر الهاتف أو ال�
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-center dark-color contact-title">تواصل معنا:</h2>
+                    <h1 class="text-center dark-color contact-title">تواصل معنا:</h1>
                     <p class="text-center contact-title-sec red-color">966549485616 واتس اب </p>
                     <p class="text-center contact-title-sec red-color"><a class="red-color" href="mailto:info@shitrend.com">info@shitrend.com</a></p>
                 </div>

@@ -339,6 +339,15 @@ body {
     background-color: #f8f9fa;
 }
 
+.active>.page-link, .page-link.active {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.page-link {
+    color: var(--main-color);
+}
+
  /* media queries  */
 
 @media(max-width: 768px) {
