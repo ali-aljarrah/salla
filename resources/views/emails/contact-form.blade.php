@@ -1,34 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Form Submission</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #f8f9fa; padding: 15px; text-align: center; }
-        .content { padding: 20px; }
-        .footer { margin-top: 20px; font-size: 0.8em; color: #6c757d; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h2>New Contact Form Submission</h2>
-        </div>
+@component('mail::layout', ['rtl' => true])
+@slot('header')
+@component('mail::header', ['url' => config('app.url')])
+{{ config('app.name') }}
+@endcomponent
+@endslot
 
-        <div class="content">
-            <p><strong>Name:</strong> {{ $formData['name'] }}</p>
-            <p><strong>Email:</strong> <a href="mailto:{{ $formData['email'] }}">{{ $formData['email'] }}</a></p>
-            @if(!empty($formData['subject']))
-                <p><strong>Subject:</strong> {{ $formData['subject'] }}</p>
-            @endif
-            <p><strong>Message:</strong></p>
-            <p>{{ $formData['message'] }}</p>
-        </div>
+<!-- RTL Email Content -->
+<div style="direction: rtl; text-align: right; font-family: 'Tahoma', Arial, sans-serif;">
 
-        <div class="footer">
-            <p>This message was sent via the contact form on {{ config('app.name') }} at {{ now()->format('Y-m-d H:i:s') }}.</p>
-        </div>
+@component('mail::message')
+<div style=" text-align: right; font-size: 16px;">
+    <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">
+        رسالة طلب تواصل
     </div>
-</body>
-</html>
+
+    الاسم الكامل: {{ $formData['name'] }}
+    البريد الالكتروني: {{ $formData['email'] }}
+
+    تفاصيل الرسالة
+    {{ $formData['message'] }}
+
+
+    شكراً لكم،
+    فريق {{ config('app.name') }}
+</div>
+@endcomponent
+
+</div>

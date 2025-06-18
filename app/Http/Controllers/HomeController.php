@@ -83,8 +83,8 @@ class HomeController extends Controller
         try {
             // Process the form...
             Mail::to(config('mail.from.address'))
-            ->locale('ar')
-            ->send(new ContactEmail($formData));
+                ->locale('ar')
+                ->send(new ContactEmail($formData));
 
             return response()->json([
                 'success' => true,

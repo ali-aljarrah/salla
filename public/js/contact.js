@@ -34,32 +34,32 @@ $("#contactSubmitForm").on("submit", function (e) {
 
     var isValid = true;
 
-    // if (!fullname) {
-    //     showFieldError("fullName", "الرجاء ادخال الاسم الكامل");
-    //     isValid = false;
-    // }
+    if (!fullname) {
+        showFieldError("fullName", "الرجاء ادخال الاسم الكامل");
+        isValid = false;
+    }
 
-    // if (!email) {
-    //     showFieldError("email", "الرجاء ادخال البريد الالكتروني");
-    //     isValid = false;
-    // } else if (!isValidEmail(email)) {
-    //     showFieldError(
-    //         "email",
-    //         "الرجاء ادخال بريد الكتروني صالح"
-    //     );
-    //     isValid = false;
-    // }
+    if (!email) {
+        showFieldError("email", "الرجاء ادخال البريد الالكتروني");
+        isValid = false;
+    } else if (!isValidEmail(email)) {
+        showFieldError(
+            "email",
+            "الرجاء ادخال بريد الكتروني صالح"
+        );
+        isValid = false;
+    }
 
-    // if (!message) {
-    //     showFieldError("message", "الرجاء ادخال الرسالة");
-    //     isValid = false;
-    // }
+    if (!message) {
+        showFieldError("message", "الرجاء ادخال الرسالة");
+        isValid = false;
+    }
 
-    // if (!isValid) {
-    //     $submitBtn.prop("disabled", false).text("ارسال");
-    //     toastr.error("الرجاء تصحيح الأخطاء في النموذج");
-    //     return;
-    // }
+    if (!isValid) {
+        $submitBtn.prop("disabled", false).text("ارسال");
+        toastr.error("الرجاء تصحيح الأخطاء في النموذج");
+        return;
+    }
 
     // AJAX request
     $.ajax({
@@ -71,7 +71,7 @@ $("#contactSubmitForm").on("submit", function (e) {
             if (response.success) {
                 $form[0].reset();
                 $submitBtn.prop("disabled", false).text("ارسال");
-                toastr.error("شكرا لرسالتكم! سيتم التواصل معكم قريبا.");
+                toastr.success("شكرا لرسالتكم! سيتم التواصل معكم قريبا.");
             }
         },
         error: function (xhr) {

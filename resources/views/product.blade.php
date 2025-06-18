@@ -326,6 +326,7 @@
                 data: $form.serialize(),
                 success: function(response) {
                     if (response.success) {
+                        toastr.success("شكرا لاختيارك شي تريند سنتواصل معك خلال 24 ساعة.");
                         window.location.href = response.redirect_url;
                     }
                 },
