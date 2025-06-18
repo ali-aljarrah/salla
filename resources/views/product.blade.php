@@ -70,20 +70,20 @@
                     <h2 class="secondary-title">الوقت المتبقي للخصم</h2>
                     <div>
                         <div class="countdown mt-3">
-                            <div id="countdown-timer" class="d-flex justify-content-evenly gap-3">
-                                <div class="text-center">
+                            <div id="countdown-timer" class="row">
+                                <div class="text-center col-lg-3 col-md-6 mb-4 mb-lg-0">
                                     <div class="seconds stock-cont px-5 fs-1 fw-bold">00</div>
                                     <div class="text-muted time-label">الثواني</div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center col-lg-3 col-md-6 mb-4 mb-lg-0">
                                     <div class="minutes stock-cont px-5 fs-1 fw-bold">00</div>
                                     <div class="text-muted time-label">الدقائق</div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center col-lg-3 col-md-6 mb-4 mb-lg-0">
                                     <div class="hours stock-cont px-5 fs-1 fw-bold">00</div>
                                     <div class="text-muted time-label">الساعات</div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center col-lg-3 col-md-6 mb-4 mb-lg-0">
                                     <div class="days stock-cont px-5 fs-1 fw-bold">00</div>
                                     <div class="text-muted time-label">الايام</div>
                                 </div>
