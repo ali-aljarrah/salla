@@ -1,7 +1,14 @@
     @include('include.head')
     <title>شي تريند - سياسة الخصوصية</title>
+<meta name="description"
+content="اقرأ الشروط والأحكام وسياسة الخصوصية لمعرفة حقوقك ومسؤولياتك عند استخدام موقع شي تريند.">
 
+<meta property="og:title" content="شي تريند - سياسة الخصوصية">
+<meta property="og:description"
+    content="اقرأ الشروط والأحكام وسياسة الخصوصية لمعرفة حقوقك ومسؤولياتك عند استخدام موقع شي تريند.">
 
+    <link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
 </head>
   <body>
     @include('include.menu')

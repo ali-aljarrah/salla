@@ -1,7 +1,15 @@
     @include('include.head')
-    <title>شي تريند - {{$category->name}}</title>
 
+<title>شي تريند | تشكيلة واسعة بأسعار مميزة - {{$category->name}}</title>
+<meta name="description"
+content="تصفح أحدث تشكيلة {{$category->name}} في شي تريند. ✓ خصومات تصل إلى 50% ✓ دفع عند الاستلام ✓ شحن سريع.">
 
+<meta property="og:title" content="شي تريند | تشكيلة واسعة بأسعار مميزة - {{$category->name}}">
+<meta property="og:description"
+    content="تصفح أحدث تشكيلة {{$category->name}} في شي تريند. ✓ خصومات تصل إلى 50% ✓ دفع عند الاستلام ✓ شحن سريع.">
+
+<link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
 </head>
   <body>
     @include('include.menu')

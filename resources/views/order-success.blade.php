@@ -1,7 +1,14 @@
     @include('include.head')
     <title>شي تريند - شكرا جزيلا</title>
+<meta name="description"
+content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
 
+<meta property="og:title" content="شي تريند - شكرا جزيلا">
+<meta property="og:description"
+    content="شكرا لشرائك من شي تريند, سيتم التواصل معك خلال 24 ساعة!">
 
+    <link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
 </head>
   <body>
     @include('include.menu')

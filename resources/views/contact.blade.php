@@ -1,5 +1,15 @@
 @include('include.head')
-<title>شي تريند - تواصل</title>
+
+<title>اتصل بنا - شي تريند | خدمة العملاء 24/7</title>
+<meta name="description"
+content="تواصل مع فريق شي تريند عبر الهاتف أو الواتساب أو البريد الإلكتروني. نحن هنا لمساعدتك!">
+
+<meta property="og:title" content="اتصل بنا - شي تريند | خدمة العملاء 24/7">
+<meta property="og:description"
+    content="تواصل مع فريق شي تريند عبر الهاتف أو الواتساب أو البريد الإلكتروني. نحن هنا لمساعدتك!">
+
+<link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
 
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 </head>

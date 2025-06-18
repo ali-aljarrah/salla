@@ -1,5 +1,20 @@
 @include('include.head')
-<title>شي تريند - {{$product->name}}</title>
+
+<title>شي تريند | {{$product->name}} | {{$product->price}} | ريال</title>
+<meta name="description"
+content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
+
+<meta property="og:title" content="شي تريند | {{$product->name}} | {{$product->price}} | ريال">
+<meta property="og:description"
+    content="اشتري {{$product->name}} من شي تريند. . توصيل سريع.">
+
+<meta property="og:type" content="product">
+<meta property="product:price:amount" content="{{$product->price}}">
+<meta property="product:price:currency" content="SAR">
+
+<link rel="canonical" href="{{Request::url()}}">
+<meta property="og:url" content="{{Request::url()}}">
+
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
 </head>
